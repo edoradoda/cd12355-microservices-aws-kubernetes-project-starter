@@ -73,11 +73,11 @@ curl  http://127.0.0.1:5153/api/reports/user_visits
 4. Continuous Integration with CodeBuild:
 The purpose of this step is to provide a systematic approach to pushing the Docker image of the coworking application into Amazon ECR.
 
-First, create an Amazon ECR repository on your AWS console.
+- First, create an Amazon ECR repository on your AWS console.
 
-Then, create an Amazon CodeBuild project that is connected to your project's GitHub repository.
+- Then, create an Amazon CodeBuild project that is connected to your project's GitHub repository.
 
-Once they are done, modify buildspec.yaml file that will be triggered whenever the project repository is updated
+- Once they are done, modify buildspec.yaml file that will be triggered whenever the project repository is updated
 
 5. Deploy the Application:
 ```bash
