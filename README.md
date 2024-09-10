@@ -32,46 +32,74 @@ kubectl apply -f deployment/postgresql-deployment.yaml
 kubectl apply -f deployment/postgresql-service.yaml 
 ```
 
-Connecting via Port Forwarding:
+Connecting to DB via Port Forwarding:
+```bash
 # List the services
-**`kubectl get svc`**
+kubectl get svc
 # Set up port-forwarding to `postgresql-service`
-**`kubectl port-forward service/postgresql-service 5433:5432 &`**
-3. Install dependencies: **`npm install`**
-4. Build the project: **`npm run build`**
-5. Start the project: **`npm start`**
+kubectl port-forward service/postgresql-service 5433:5432 &
+```
 
-## **Usage**
+Run Seed Files
+```bash
+# instal psql to connect to DB
+apt update
+apt install postgresql postgresql-contrib
+#run the seed files in db/ directory in order to create the tables and populate them with data.
+export DB_PASSWORD=mypassword
+PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < <FILE_NAME.sql>
+```
+Checking the tables
+```bash
+PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433
+select *from users;
+\q
+```
 
-To use Project Title, follow these steps:
+3. Deploy the Analytics Application: 
+```bash
+docker build -t test-coworking-analytics .
+#Verify the Docker Image
+docker run --network="host" test-coworking-analytics
+#The endpoint should respond with data form DB
+curl  http://127.0.0.1:5153/api/reports/user_visits 
+```
+4. Continuous Integration with CodeBuild
+The purpose of this step is to provide a systematic approach to pushing the Docker image of the coworking application into Amazon ECR.
 
-1. Open the project in your favorite code editor.
-2. Modify the source code to fit your needs.
-3. Build the project: **`npm run build`**
-4. Start the project: **`npm start`**
-5. Use the project as desired.
+First, create an Amazon ECR repository on your AWS console.
 
-## **Contributing**
+Then, create an Amazon CodeBuild project that is connected to your project's GitHub repository.
 
-If you'd like to contribute to Project Title, here are some guidelines:
+Once they are done, modify buildspec.yaml file that will be triggered whenever the project repository is updated
 
-1. Fork the repository.
-2. Create a new branch for your changes.
-3. Make your changes.
-4. Write tests to cover your changes.
-5. Run the tests to ensure they pass.
-6. Commit your changes.
-7. Push your changes to your forked repository.
-8. Submit a pull request.
+5. Deploy the Application:
+```bash
+# load the env  variables and secret password
+kubectl apply -f deployment/configmap.yaml
+#Verify the creation of the configmap
+kubectl get configmaps
+
+# deploy the app
+kubectl apply -f deployment/coworking.yaml
+# You cantest the app with URL from load balancer, e.g.:
+curl http://ad9373834b3964a1b98e7c36a4944852-1498505752.us-east-1.elb.amazonaws.com:5153/api/reports/daily_usage
+```
+5. Setup CloudWatch Logging:
+
+```bash
+# Add aditional permisions to installa addon  Cloudwatch
+aws iam attach-role-policy \
+--role-name <ROLE-NODE-GROUP-EKS> \
+--policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy \
+--region <MY-REGION>
+# Create addon
+aws eks create-addon --addon-name amazon-cloudwatch-observability --cluster-name <MY-CLUSTER-NAME>
+```
+Now go to the Amazon cloud and you will be able to see the detailed logs of the application by accessing the CloudWatch service -> Metrics.
 
 ## **Contact**
 
 If you have any questions or comments about Coworking app, please contact **[Eduar](doradoeduar@gmail.com)**.
-
-## **Conclusion**
-
-That's it! This is a basic template for a proper README file for a general project. You can customize it to fit your needs, but make sure to include all the necessary information. A good README file can help users understand and use your project, and it can also help attract contributors.
-
-
 
 
