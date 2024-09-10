@@ -5,6 +5,8 @@ The Coworking aplication Service is a set of APIs that enables users to request 
 
 This project contains the step-by-step instructions for deploying an application and its database on Kubernetes for the Amazon AWS cloud.
 
+<p > <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+
 ## **Dependencies**
 Tools that must be installed in the console:
 
@@ -12,7 +14,9 @@ aws cli: to access the AWS cloud
 eksctl: used to create EKS clusters
 kubectl : to interact with the cluster in EKS
 command to create a cluster if you don't have one:
-**`eksctl create cluster --name <MY-CLUSTER> --region us-east-1 --nodegroup-name starter-nodes --node-type t3.small --nodes 1 --nodes -min 1 --nodes-max 2`**
+```bash
+eksctl create cluster --name <MY-CLUSTER> --region us-east-1 --nodegroup-name starter-nodes --node-type t3.small --nodes 1 --nodes -min 1 --nodes-max 2
+```
 
 ## **Installation**
 
@@ -21,10 +25,13 @@ To install Coworking app , follow these steps:
 1. Clone the repository:fork and clone **`git clone https://github.com/edoradoda/cd12355-microservices-aws-kubernetes-project-starter.git`**
 2. Navigate to the project directory: **`cd cd12355-microservices-aws-kubernetes-project-starter`**
 3. Configure a Database for the Service:
-**`kubectl apply -f deployment/pvc.yaml`**
-**`kubectl apply -f deployment/pv.yaml`**
-**`kubectl apply -f deployment/postgresql-deployment.yaml`**
-**`kubectl apply -f deployment/postgresql-service.yaml`** 
+```bash
+kubectl apply -f deployment/pvc.yaml
+kubectl apply -f deployment/pv.yaml
+kubectl apply -f deployment/postgresql-deployment.yaml
+kubectl apply -f deployment/postgresql-service.yaml 
+```
+
 Connecting via Port Forwarding:
 # List the services
 **`kubectl get svc`**
@@ -67,5 +74,4 @@ That's it! This is a basic template for a proper README file for a general proje
 
 
 
-<h3 >Languages and Tools:</h3>
-<p > <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+
