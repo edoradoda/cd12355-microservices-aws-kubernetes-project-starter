@@ -10,10 +10,10 @@ This project contains the step-by-step instructions for deploying an application
 ## **Dependencies**
 Tools that must be installed in the console:
 
-aws cli: to access the AWS cloud
-eksctl: used to create EKS clusters
-kubectl : to interact with the cluster in EKS
-command to create a cluster if you don't have one:
+-aws cli: to access the AWS cloud
+-eksctl: used to create EKS clusters
+-kubectl : to interact with the cluster in EKS
+-command to create a cluster if you don't have one:
 ```bash
 eksctl create cluster --name <MY-CLUSTER> --region us-east-1 --nodegroup-name starter-nodes --node-type t3.small --nodes 1 --nodes -min 1 --nodes-max 2
 ```
