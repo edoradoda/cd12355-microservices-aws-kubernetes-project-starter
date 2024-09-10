@@ -22,8 +22,14 @@ eksctl create cluster --name <MY-CLUSTER> --region us-east-1 --nodegroup-name st
 
 To install Coworking app , follow these steps:
 
-1. Clone the repository:fork and clone **`git clone https://github.com/edoradoda/cd12355-microservices-aws-kubernetes-project-starter.git`**
-2. Navigate to the project directory: **`cd cd12355-microservices-aws-kubernetes-project-starter`**
+1. Clone the repository:fork and clone:
+```bash
+git clone https://github.com/edoradoda/cd12355-microservices-aws-kubernetes-project-starter.git
+```
+2. Navigate to the project directory: 
+```bash
+cd cd12355-microservices-aws-kubernetes-project-starter
+```
 3. Configure a Database for the Service:
 ```bash
 kubectl apply -f deployment/pvc.yaml
@@ -64,7 +70,7 @@ docker run --network="host" test-coworking-analytics
 #The endpoint should respond with data form DB
 curl  http://127.0.0.1:5153/api/reports/user_visits 
 ```
-4. Continuous Integration with CodeBuild
+4. Continuous Integration with CodeBuild:
 The purpose of this step is to provide a systematic approach to pushing the Docker image of the coworking application into Amazon ECR.
 
 First, create an Amazon ECR repository on your AWS console.
@@ -85,7 +91,7 @@ kubectl apply -f deployment/coworking.yaml
 # You cantest the app with URL from load balancer, e.g.:
 curl http://ad9373834b3964a1b98e7c36a4944852-1498505752.us-east-1.elb.amazonaws.com:5153/api/reports/daily_usage
 ```
-5. Setup CloudWatch Logging:
+6. Setup CloudWatch Logging:
 
 ```bash
 # Add aditional permisions to installa addon  Cloudwatch
@@ -96,7 +102,7 @@ aws iam attach-role-policy \
 # Create addon
 aws eks create-addon --addon-name amazon-cloudwatch-observability --cluster-name <MY-CLUSTER-NAME>
 ```
-Now go to the Amazon cloud and you will be able to see the detailed logs of the application by accessing the CloudWatch service -> Metrics.
+Now go to the Amazon console and you will be able to see the detailed logs of the application by accessing the CloudWatch service -> Metrics.
 
 ## **Contact**
 
